@@ -1,8 +1,8 @@
-#0 Introduction
+# 0 Introduction
 This artifact includes source code, datasets and models of the paper "Efficient White-box Fairness Testing through Gradient Search" by Lingfeng Zhang, Yueling Zhang, Min Zhang in ISSTA'21.
 
 
-#1 Getting Started
+# 1 Getting Started
 
 1.1 Environment
 Python3.6 + Tensorflow2.0 or later versions are recommended.
@@ -13,7 +13,7 @@ The following packages are also required: numpy, scikit-learn, pandas, joblib.
 We provide a small example to validate the general functionality by generating some individual discriminatory instances with ADF, EIDIG-5, and EIDIG-INF, respectively. In the corresponding file directory, enter in the terminal 'python test.py'. You will get statistical results in the terminal and have discriminatory instances saved to 'logging_data/logging_data_from_tests/complete_comparison/'. Less than 30 min will be taken for a personal computer.
 
 
-#2 Detailed Description
+# 2 Detailed Description
 
 2.1 Effectiveness/Efficiency Validation
 We reproduce the main experiments in 'reproducing.py'. This module compares the effectiveness and efficiency between ADF and EIDIG in the settings adopted in our paper. You can run it to validate our claims. It will take a few days for a personal computer, or you can run different parts of experiments in parallel for acceleration. The statistical results will be immediately reported in the terminal, and the data for further analysis are saved to 'logging_data/logging_data_from_tests/'.
