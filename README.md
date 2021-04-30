@@ -11,6 +11,7 @@ The following packages are also required: numpy, scikit-learn, pandas, joblib.
 
 
 1.2 A Small Example
+
 We provide a small example to validate the general functionality by generating some individual discriminatory instances with ADF, EIDIG-5, and EIDIG-INF, respectively. In the corresponding file directory, enter in the terminal 'python test.py'. You will get statistical results in the terminal and have discriminatory instances saved to 'logging_data/logging_data_from_tests/complete_comparison/'. Less than 30 min will be taken for a personal computer.
 
 
