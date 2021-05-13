@@ -23,12 +23,13 @@ def compute_grad(x, model):
     return gradient[0].numpy() if model(x) > 0.5 else -gradient[0].numpy()
 
 
-def global_generation(X, seeds, num_attribs, g_num, protected_attribs, constraint, model, decay, max_iter, s_g):
+def global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, decay, max_iter, s_g):
     # global generation phase of EIDIG
 
     g_id = np.empty(shape=(0, num_attribs))
     all_gen_g = np.empty(shape=(0, num_attribs))
     try_times = 0
+    g_num = len(seeds)
     for i in range(g_num):
         x1 = seeds[i].copy()
         grad1 = np.zeros_like(X[0]).astype(float)
@@ -97,7 +98,7 @@ def local_generation(num_attribs, l_num, g_id, protected_attribs, constraint, mo
     return l_id, all_gen_l, try_times
     
 
-def individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, update_interval, max_iter=10, s_g=1.0, s_l=1.0, epsilon_l=1e-6):
+def individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, l_num, update_interval, max_iter=10, s_g=1.0, s_l=1.0, epsilon_l=1e-6):
     # complete implementation of EIDIG
     # return non-duplicated individual discriminatory instances generated, non-duplicate instances generated and total number of search iterations
 

@@ -45,7 +45,7 @@ def comparison(num_experiment_round, benchmark, X, protected_attribs, constraint
                 seeds = np.append(seeds, [new_seed], axis=0)
 
         t1 = time.time()
-        ids_ADF, gen_ADF, total_iter_ADF = ADF.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, g_num, l_num, max_iter, s_g, s_l, epsilon_l)
+        ids_ADF, gen_ADF, total_iter_ADF = ADF.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, l_num, max_iter, s_g, s_l, epsilon_l)
         np.save('logging_data/logging_data_from_tests/complete_comparison/' + benchmark + '_ids_ADF_' + str(round_now) + '.npy', ids_ADF)
         t2 = time.time()
         print('ADF:', 'In', total_iter_ADF, 'search iterations', len(gen_ADF), 'non-duplicate instances are explored', len(ids_ADF), 'of which are discriminatory. Time cost:', t2-t1, 's.')
@@ -53,7 +53,7 @@ def comparison(num_experiment_round, benchmark, X, protected_attribs, constraint
         time_cost[0] += t2-t1
 
         t1 = time.time()
-        ids_EIDIG_5, gen_EIDIG_5, total_iter_EIDIG_5 = EIDIG.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, 5, max_iter, s_g, s_l, epsilon_l)
+        ids_EIDIG_5, gen_EIDIG_5, total_iter_EIDIG_5 = EIDIG.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, l_num, 5, max_iter, s_g, s_l, epsilon_l)
         np.save('logging_data/logging_data_from_tests/complete_comparison/' + benchmark + '_ids_EIDIG_5_' + str(round_now) + '.npy', ids_EIDIG_5)
         t2 = time.time()
         print('EIDIG-5:', 'In', total_iter_EIDIG_5, 'search iterations', len(gen_EIDIG_5), 'non-duplicate instances are explored', len(ids_EIDIG_5), 'of which are discriminatory. Time cost:', t2-t1, 's.')
@@ -61,7 +61,7 @@ def comparison(num_experiment_round, benchmark, X, protected_attribs, constraint
         time_cost[1] += t2-t1
 
         t1 = time.time()
-        ids_EIDIG_INF, gen_EIDIG_INF, total_iter_EIDIG_INF = EIDIG.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, l_num+1, max_iter, s_g, s_l, epsilon_l)
+        ids_EIDIG_INF, gen_EIDIG_INF, total_iter_EIDIG_INF = EIDIG.individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, decay, l_num, l_num+1, max_iter, s_g, s_l, epsilon_l)
         np.save('logging_data/logging_data_from_tests/complete_comparison/' + benchmark + '_ids_EIDIG_INF_' + str(round_now) + '.npy', ids_EIDIG_INF)
         t2 = time.time()
         print('EIDIG-INF:', 'In', total_iter_EIDIG_INF, 'search iterations', len(gen_EIDIG_INF), 'non-duplicate instances are explored', len(ids_EIDIG_INF), 'of which are discriminatory. Time cost:', t2-t1, 's.')
@@ -104,7 +104,7 @@ def global_comparison(num_experiment_round, benchmark, X, protected_attribs, con
         print('Given', num_seeds, '(no more than 600 for german credit) seeds,', num_dis, 'of which are individual discriminatory instances.')
 
         t1 = time.time()
-        ids_ADF, _, total_iter_ADF = ADF.global_generation(X, seeds, num_attribs, num_seeds, protected_attribs, constraint, model, max_iter, s_g)
+        ids_ADF, _, total_iter_ADF = ADF.global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, max_iter, s_g)
         t2 = time.time()
         num_ids_ADF = len(ids_ADF)
         print('ADF:', 'In', total_iter_ADF, 'search iterations,', num_ids_ADF, 'non-duplicate individual discriminatory instances are generated. Time cost:', t2-t1, 's.')
@@ -115,7 +115,7 @@ def global_comparison(num_experiment_round, benchmark, X, protected_attribs, con
         for index, decay in enumerate(decay_list):
             print('Decay factor set to {}:'.format(decay))
             t1 = time.time()
-            ids_EIDIG, _, total_iter_EIDIG = EIDIG.global_generation(X, seeds, num_attribs, num_seeds, protected_attribs, constraint, model, decay, max_iter, s_g)
+            ids_EIDIG, _, total_iter_EIDIG = EIDIG.global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, decay, max_iter, s_g)
             t2 = time.time()
             num_ids_EIDIG = len(ids_EIDIG)
             print('EIDIG:', 'In', total_iter_EIDIG, 'search iterations,', num_ids_EIDIG, 'non-duplicate individual discriminatory instances are generated. Time cost:', t2-t1, 's.')

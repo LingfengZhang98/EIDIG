@@ -25,12 +25,13 @@ def compute_grad(x, model, loss_func=keras.losses.binary_crossentropy):
     return gradient[0].numpy()
 
 
-def global_generation(X, seeds, num_attribs, g_num, protected_attribs, constraint, model, max_iter, s_g):
+def global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, max_iter, s_g):
     # global generation phase of ADF
 
     g_id = np.empty(shape=(0, num_attribs))
     all_gen_g = np.empty(shape=(0, num_attribs))
     try_times = 0
+    g_num = len(seeds)
     for i in range(g_num):
         x1 = seeds[i].copy()
         for _ in range(max_iter):
@@ -85,12 +86,12 @@ def local_generation(num_attribs, l_num, g_id, protected_attribs, constraint, mo
     return l_id, all_gen_l, try_times
 
 
-def individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, g_num, l_num, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
+def individual_discrimination_generation(X, seeds, protected_attribs, constraint, model, l_num, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
     # complete implementation of ADF
     # return non-duplicated individual discriminatory instances generated, non-duplicate instances generated and total number of search iterations
 
     num_attribs = len(X[0])
-    g_id, gen_g, g_gen_num = global_generation(X, seeds, num_attribs, g_num, protected_attribs, constraint, model, max_iter, s_g)
+    g_id, gen_g, g_gen_num = global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, max_iter, s_g)
     l_id, gen_l, l_gen_num = local_generation(num_attribs, l_num, g_id, protected_attribs, constraint, model, s_l, epsilon)
     all_id = np.append(g_id, l_id, axis=0)
     all_gen = np.append(gen_g, gen_l, axis=0)
