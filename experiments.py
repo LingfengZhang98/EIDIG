@@ -251,9 +251,9 @@ def time_cost_comparison(num_experiment_round, benchmark, X, protected_attribs, 
                 new_seed = generation_utilities.get_seed(clustered_data, len(X), c_num, i%c_num, fashion=fashion)
                 seeds = np.append(seeds, [new_seed], axis=0)
 
-        t_ADF = ADF.time_record(X, seeds, protected_attribs, constraint, model, g_num, l_num, record_step, record_frequency, max_iter, s_g, s_l, epsilon_l)
-        t_EIDIG_5 = EIDIG.time_record(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, record_step, record_frequency, 5, max_iter, s_g, s_l, epsilon_l)
-        t_EIDIG_INF = EIDIG.time_record(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, record_step, record_frequency, l_num+1, max_iter, s_g, s_l, epsilon_l)
+        t_ADF = ADF.time_record(X, seeds, protected_attribs, constraint, model, l_num, record_step, record_frequency, max_iter, s_g, s_l, epsilon_l)
+        t_EIDIG_5 = EIDIG.time_record(X, seeds, protected_attribs, constraint, model, decay, l_num, record_step, record_frequency, 5, max_iter, s_g, s_l, epsilon_l)
+        t_EIDIG_INF = EIDIG.time_record(X, seeds, protected_attribs, constraint, model, decay, l_num, record_step, record_frequency, l_num+1, max_iter, s_g, s_l, epsilon_l)
         time_cost[0] += t_ADF
         time_cost[1] += t_EIDIG_5
         time_cost[2] += t_EIDIG_INF

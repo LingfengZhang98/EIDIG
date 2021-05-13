@@ -103,7 +103,7 @@ def individual_discrimination_generation(X, seeds, protected_attribs, constraint
     # return non-duplicated individual discriminatory instances generated, non-duplicate instances generated and total number of search iterations
 
     num_attribs = len(X[0])
-    g_id, gen_g, g_gen_num = global_generation(X, seeds, num_attribs, g_num, protected_attribs, constraint, model, decay, max_iter, s_g)
+    g_id, gen_g, g_gen_num = global_generation(X, seeds, num_attribs, protected_attribs, constraint, model, decay, max_iter, s_g)
     l_id, gen_l, l_gen_num = local_generation(num_attribs, l_num, g_id, protected_attribs, constraint, model, update_interval, s_l, epsilon_l)
     all_id = np.append(g_id, l_id, axis=0)
     all_gen = np.append(gen_g, gen_l, axis=0)
@@ -182,7 +182,7 @@ def seedwise_generation(X, seeds, protected_attribs, constraint, model, l_num, d
     return num_gen, num_ids
 
 
-def time_record(X, seeds, protected_attribs, constraint, model, decay, g_num, l_num, record_step, record_frequency, update_interval, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
+def time_record(X, seeds, protected_attribs, constraint, model, decay, l_num, record_step, record_frequency, update_interval, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
     # record time consumption
     
     num_attribs = len(X[0])

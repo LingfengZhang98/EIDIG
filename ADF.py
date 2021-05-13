@@ -155,7 +155,7 @@ def seedwise_generation(X, seeds, protected_attribs, constraint, model, l_num, m
         num_ids[index] = len(nondup_ids)
     return num_gen, num_ids
 
-def time_record(X, seeds, protected_attribs, constraint, model, g_num, l_num, record_step, record_frequency, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
+def time_record(X, seeds, protected_attribs, constraint, model, l_num, record_step, record_frequency, max_iter=10, s_g=1.0, s_l=1.0, epsilon=1e-6):
     # record time consumption
     
     t1 = time.time()
