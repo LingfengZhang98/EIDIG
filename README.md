@@ -1,5 +1,5 @@
 # 0 Introduction
-This artifact includes source code, datasets and models of the paper "Efficient White-box Fairness Testing through Gradient Search" by Lingfeng Zhang, Yueling Zhang, Min Zhang in ISSTA'21.
+This artifact includes source code, datasets and models of the paper "Efficient White-Box Fairness Testing through Gradient Search" by Lingfeng Zhang, Yueling Zhang, Min Zhang in ISSTA'21.
 
 
 # 1 Getting Started
